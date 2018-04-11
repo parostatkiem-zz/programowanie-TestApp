@@ -16,7 +16,7 @@ namespace programowanie_TestApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Model model = new Model();
-            View1 view = new View1();
+            ViewCreator view = new ViewCreator();
             Presenter p = new Presenter(model, view);
             Application.Run(view);
         }

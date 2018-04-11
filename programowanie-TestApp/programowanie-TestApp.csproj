@@ -52,13 +52,13 @@
     <Compile Include="SingleAnswer.Designer.cs">
       <DependentUpon>SingleAnswer.cs</DependentUpon>
     </Compile>
-    <Compile Include="View1.cs">
+    <Compile Include="ViewCreator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View1.Designer.cs">
-      <DependentUpon>View1.cs</DependentUpon>
+    <Compile Include="ViewCreator.Designer.cs">
+      <DependentUpon>ViewCreator.cs</DependentUpon>
     </Compile>
-    <Compile Include="IView.cs" />
+    <Compile Include="ICreator.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,12 +70,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SingleAnswer.resx">
       <DependentUpon>SingleAnswer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View1.resx">
-      <DependentUpon>View1.cs</DependentUpon>
+    <EmbeddedResource Include="ViewCreator.resx">
+      <DependentUpon>ViewCreator.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -86,6 +87,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Delete_1493279.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

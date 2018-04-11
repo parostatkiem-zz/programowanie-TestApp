@@ -5,10 +5,13 @@ using System.Text;
 
 namespace programowanie_TestApp
 {
-    class Question
+    public class Question
     {
         public List<Answer> Answers = new List<Answer>(); 
         public bool IsMultipleChoice { get; set; }
+        public string Text { get; set; }
+
+      
 
         public int AnswersCount
         {
@@ -31,12 +34,37 @@ namespace programowanie_TestApp
                 return count;
             }
         }
+
+        public Question(string text="",bool isMultiChoice=false)
+        {
+            //konstruktor
+            IsMultipleChoice = isMultiChoice;
+            Text = text;
+            for(int i=0;i<DefaultNumberOfAnswers;i++)
+            {
+                Answers.Add(new Answer());
+            }
+        }
+
+        public override string ToString()
+        {
+            return Text;
+        }
+
+        private const int DefaultNumberOfAnswers = 4;
+        private string text = "";
+
     }
 
-    class Answer
+    public class Answer
     {
         public bool IsRight { get; set; }
         public string Text { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
 
         private string text = "";
     }

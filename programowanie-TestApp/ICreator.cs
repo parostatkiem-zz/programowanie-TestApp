@@ -5,7 +5,9 @@ using System.Text;
 
 namespace programowanie_TestApp
 {
-    interface IView
+    interface ICreator
     {
+        event Func<List<Question>> LoadQuestions;
+        event Func<int, Question> LoadSingleQuestion;
     }
 }

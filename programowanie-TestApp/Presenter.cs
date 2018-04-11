@@ -7,12 +7,25 @@ namespace programowanie_TestApp
 {
     class Presenter
     {
-        IView view;
+        ICreator view;
         Model model;
-        public Presenter(Model model, IView view)
+        public Presenter(Model model, ICreator view)
         {
             this.model = model;
             this.view = view;
+
+            view.LoadQuestions += View_LoadQuestions;
+            view.LoadSingleQuestion += View_LoadSingleQuestion;
+        }
+
+        private Question View_LoadSingleQuestion(int arg)
+        {
+            return model.Questions[arg];
+        }
+
+        private List<Question> View_LoadQuestions()
+        {
+            return model.Questions;
         }
     }
 }

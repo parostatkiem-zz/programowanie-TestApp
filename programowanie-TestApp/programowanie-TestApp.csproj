@@ -46,11 +46,11 @@
   <ItemGroup>
     <Compile Include="Classes.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="SingleAnswer.cs">
+    <Compile Include="SingleAnswerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SingleAnswer.Designer.cs">
-      <DependentUpon>SingleAnswer.cs</DependentUpon>
+    <Compile Include="SingleAnswerControl.Designer.cs">
+      <DependentUpon>SingleAnswerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewCreator.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SingleAnswer.resx">
-      <DependentUpon>SingleAnswer.cs</DependentUpon>
+    <EmbeddedResource Include="SingleAnswerControl.resx">
+      <DependentUpon>SingleAnswerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewCreator.resx">
       <DependentUpon>ViewCreator.cs</DependentUpon>

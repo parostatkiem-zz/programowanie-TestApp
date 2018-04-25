@@ -43,21 +43,20 @@ namespace programowanie_TestApp
         }
 
         private void listViewQuestions_SelectedIndexChanged(object sender, EventArgs e)
-        {   if (CurrentlySelectedQuestion == -1) return;
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestion));
+        {   if (CurrentlySelectedQuestionIndex == -1) return;
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
 
         private void DisplayQuestion(Question q)
         {
             textBoxQuestionText.Text = q.Text;
 
-            if (q.IsMultipleChoice)
-                checkBoxMultiChoice.Checked = true;
+            checkBoxMultiChoice.Checked = q.IsMultipleChoice;
 
             panelAnswerContainer.Controls.Clear();
             foreach(Answer a in q.Answers)
             {
-                var singleAnswer = new SingleAnswer();
+                var singleAnswer = new SingleAnswerControl(a.Text,a.IsRight);
                 singleAnswer.Top = singleAnswer.Height * q.Answers.IndexOf(a);
                 panelAnswerContainer.Controls.Add(singleAnswer);
             }
@@ -65,7 +64,7 @@ namespace programowanie_TestApp
 
         }
 
-        private int CurrentlySelectedQuestion
+        private int CurrentlySelectedQuestionIndex
         {
             get
             { 
@@ -80,14 +79,50 @@ namespace programowanie_TestApp
 
         private void buttonAddQuestion_Click(object sender, EventArgs e)
         {
-            
-            Question currentQuestion = LoadSingleQuestion(CurrentlySelectedQuestion);
+            Question currentQuestion = GetCurrentQuestion();
             if (currentQuestion == null) return;
             currentQuestion.Answers.Add(new Answer());
-            UpdateSingleQuestion(CurrentlySelectedQuestion, currentQuestion);
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestion));
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
 
 
+        }
+
+        private void checkBoxMultiChoice_CheckedChanged(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+        }
+
+        private Question GetCurrentQuestion()
+        {
+            if (CurrentlySelectedQuestionIndex == -1) return null;
+            Question q = LoadSingleQuestion(CurrentlySelectedQuestionIndex);
+            if (q == null) return null;
+            return q;
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+
+            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
+            currentQuestion.Text = textBoxQuestionText.Text;
+
+            //dodać zapisywanie odpowiedzi
+
+            currentQuestion.Answers.Clear();
+            foreach(SingleAnswerControl s in panelAnswerContainer.Controls)
+            {
+                currentQuestion.Answers.Add(new Answer(s.TypedText, s.IsRight));
+            }
+
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
     }
 }

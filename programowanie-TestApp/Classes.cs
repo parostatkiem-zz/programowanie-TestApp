@@ -61,6 +61,14 @@ namespace programowanie_TestApp
         public bool IsRight { get; set; }
         public string Text { get; set; }
 
+        public Answer(string _text, bool _isRight)
+        {
+            IsRight = _isRight;
+            Text = _text;
+        }
+
+        public Answer() { }
+
         public override string ToString()
         {
             return Text;

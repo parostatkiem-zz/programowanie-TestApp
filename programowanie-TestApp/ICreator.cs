@@ -9,5 +9,9 @@ namespace programowanie_TestApp
     {
         event Func<List<Question>> LoadQuestions;
         event Func<int, Question> LoadSingleQuestion;
+
+        event Action<int,Question> UpdateSingleQuestion;
+
+        void ShowError(string message);
     }
 }

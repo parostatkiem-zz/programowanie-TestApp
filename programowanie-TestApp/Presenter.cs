@@ -16,6 +16,12 @@ namespace programowanie_TestApp
 
             view.LoadQuestions += View_LoadQuestions;
             view.LoadSingleQuestion += View_LoadSingleQuestion;
+            view.UpdateSingleQuestion += View_UpdateSingleQuestion;
+        }
+
+        private void View_UpdateSingleQuestion(int index, Question target)
+        {
+            if (!model.UpdateSingleQuestion(index, target)) view.ShowError("Wystąpił problem przy zmianie pytania" );
         }
 
         private Question View_LoadSingleQuestion(int arg)

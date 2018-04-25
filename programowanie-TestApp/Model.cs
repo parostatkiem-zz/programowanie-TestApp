@@ -18,5 +18,16 @@ namespace programowanie_TestApp
             Questions.Add(new Question("Test pytanie 4"));
 
         }
+
+
+        public bool UpdateSingleQuestion(int index, Question target)
+        {
+            try
+            {
+                Questions[index] = target;
+            }
+            catch { return false; }
+            return true;
+        }
     }
 }

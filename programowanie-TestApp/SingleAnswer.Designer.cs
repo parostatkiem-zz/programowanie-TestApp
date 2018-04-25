@@ -60,6 +60,7 @@
             this.buttonDelete.Size = new System.Drawing.Size(33, 25);
             this.buttonDelete.TabIndex = 2;
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // SingleAnswer
             // 

@@ -15,5 +15,10 @@ namespace programowanie_TestApp
         {
             InitializeComponent();
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

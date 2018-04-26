@@ -35,6 +35,7 @@ namespace programowanie_TestApp
             try
             {
                 Question source = Questions[Questions.IndexOf(q)];
+             //   source.Answers.Remove(a);
                 Answer target = source.Answers.Where(ans => ans.Text == a.Text && ans.IsRight==a.IsRight).FirstOrDefault();
                 source.Answers.Remove(target);
                 //source.Answers.Remove(a);

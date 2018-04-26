@@ -11,7 +11,8 @@ namespace programowanie_TestApp
         event Func<int, Question> LoadSingleQuestion;
 
         event Action<int,Question> UpdateSingleQuestion;
-
+        event Action<Question, Answer> RemoveAnswer;
         void ShowError(string message);
+        
     }
 }

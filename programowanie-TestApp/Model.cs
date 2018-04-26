@@ -29,5 +29,18 @@ namespace programowanie_TestApp
             catch { return false; }
             return true;
         }
+
+        public bool RemoveAnswerFrom(Question q,Answer a)
+        {
+            try
+            {
+                Question source = Questions[Questions.IndexOf(q)];
+                Answer target = source.Answers.Where(ans => ans.Text == a.Text && ans.IsRight==a.IsRight).FirstOrDefault();
+                source.Answers.Remove(target);
+                //source.Answers.Remove(a);
+            }
+            catch { return false; }
+            return true;
+        }
     }
 }

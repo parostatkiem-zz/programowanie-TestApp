@@ -11,6 +11,7 @@ namespace programowanie_TestApp
 {
     public partial class SingleAnswerControl : UserControl
     {
+        public event Action<Answer> RemoveAnswer;
         public SingleAnswerControl()
         {
             InitializeComponent();
@@ -53,7 +54,12 @@ namespace programowanie_TestApp
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            RemoveAnswer(GetAnswerObject());
+        }
 
+        public Answer GetAnswerObject()
+        {
+            return new Answer(TypedText, IsRight);
         }
     }
 }

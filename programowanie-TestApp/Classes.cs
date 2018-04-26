@@ -74,6 +74,5 @@ namespace programowanie_TestApp
             return Text;
         }
 
-        private string text = "";
     }
 }

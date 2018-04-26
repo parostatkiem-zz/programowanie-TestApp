@@ -17,6 +17,12 @@ namespace programowanie_TestApp
             view.LoadQuestions += View_LoadQuestions;
             view.LoadSingleQuestion += View_LoadSingleQuestion;
             view.UpdateSingleQuestion += View_UpdateSingleQuestion;
+            view.RemoveAnswer += View_RemoveAnswer;
+        }
+
+        private void View_RemoveAnswer(Question arg1, Answer arg2)
+        {
+            if (!model.RemoveAnswerFrom(arg1,arg2)) view.ShowError("Wystąpił problem przy usuwaniu odpowiedzi");
         }
 
         private void View_UpdateSingleQuestion(int index, Question target)

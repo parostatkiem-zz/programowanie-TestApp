@@ -19,7 +19,8 @@ namespace programowanie_TestApp
         public event Func<List<Question>> LoadQuestions;
         public event Func<int,Question> LoadSingleQuestion;
         public event Action<int,Question> UpdateSingleQuestion;
-
+        public event Action<Question, Answer> RemoveAnswer;
+       
 
 
         public void RefreshData(List<Question> questions)
@@ -58,10 +59,20 @@ namespace programowanie_TestApp
             {
                 var singleAnswer = new SingleAnswerControl(a.Text,a.IsRight);
                 singleAnswer.Top = singleAnswer.Height * q.Answers.IndexOf(a);
+                singleAnswer.RemoveAnswer += SingleAnswer_RemoveAnswer;
                 panelAnswerContainer.Controls.Add(singleAnswer);
             }
 
 
+        }
+
+        private void SingleAnswer_RemoveAnswer(Answer obj)
+        {
+            if (CurrentlySelectedQuestionIndex == -1) return;
+
+            RemoveAnswer(GetCurrentQuestion(), obj);
+
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
 
         private int CurrentlySelectedQuestionIndex

@@ -18,6 +18,13 @@ namespace programowanie_TestApp
             view.LoadSingleQuestion += View_LoadSingleQuestion;
             view.UpdateSingleQuestion += View_UpdateSingleQuestion;
             view.RemoveAnswer += View_RemoveAnswer;
+            view.AddQuestion += View_AddQuestion;
+        }
+
+        private void View_AddQuestion(bool obj)
+        {
+            if (!model.AddEmptyQuestion()) view.ShowError("Wystąpił problem przy dodawaniu pytania");
+
         }
 
         private void View_RemoveAnswer(Question arg1, Answer arg2)

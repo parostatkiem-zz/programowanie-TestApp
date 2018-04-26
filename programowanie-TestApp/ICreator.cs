@@ -12,6 +12,7 @@ namespace programowanie_TestApp
 
         event Action<int,Question> UpdateSingleQuestion;
         event Action<Question, Answer> RemoveAnswer;
+        event Action<bool> AddQuestion;
         void ShowError(string message);
         
     }

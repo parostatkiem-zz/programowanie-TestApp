@@ -33,16 +33,17 @@
             System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
             System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.buttonAddQuestion = new System.Windows.Forms.Button();
             this.labelPytania = new System.Windows.Forms.Label();
             this.listViewQuestions = new System.Windows.Forms.ListView();
+            this.buttonAddAnswer = new System.Windows.Forms.Button();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
-            this.buttonAddQuestion = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.checkBoxMultiChoice = new System.Windows.Forms.CheckBox();
             this.labelOdpowiedzi = new System.Windows.Forms.Label();
             this.labelTresc = new System.Windows.Forms.Label();
             this.textBoxQuestionText = new System.Windows.Forms.TextBox();
             this.panelAnswerContainer = new System.Windows.Forms.Panel();
-            this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,12 +60,14 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.buttonAddQuestion);
             this.splitContainer1.Panel1.Controls.Add(this.labelPytania);
             this.splitContainer1.Panel1.Controls.Add(this.listViewQuestions);
             this.splitContainer1.Panel1MinSize = 250;
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonAddAnswer);
             this.splitContainer1.Panel2.Controls.Add(this.groupBoxSettings);
             this.splitContainer1.Panel2.Controls.Add(this.labelOdpowiedzi);
             this.splitContainer1.Panel2.Controls.Add(this.labelTresc);
@@ -75,11 +78,23 @@
             this.splitContainer1.SplitterDistance = 320;
             this.splitContainer1.TabIndex = 0;
             // 
+            // buttonAddQuestion
+            // 
+            this.buttonAddQuestion.BackgroundImage = global::programowanie_TestApp.Properties.Resources.if_sign_add_299068;
+            this.buttonAddQuestion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonAddQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddQuestion.Location = new System.Drawing.Point(3, 1);
+            this.buttonAddQuestion.Name = "buttonAddQuestion";
+            this.buttonAddQuestion.Size = new System.Drawing.Size(23, 23);
+            this.buttonAddQuestion.TabIndex = 6;
+            this.buttonAddQuestion.UseVisualStyleBackColor = true;
+            this.buttonAddQuestion.Click += new System.EventHandler(this.buttonAddQuestion_Click);
+            // 
             // labelPytania
             // 
             this.labelPytania.AutoSize = true;
             this.labelPytania.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelPytania.Location = new System.Drawing.Point(4, 4);
+            this.labelPytania.Location = new System.Drawing.Point(33, 4);
             this.labelPytania.Name = "labelPytania";
             this.labelPytania.Size = new System.Drawing.Size(62, 17);
             this.labelPytania.TabIndex = 1;
@@ -107,12 +122,23 @@
             this.listViewQuestions.View = System.Windows.Forms.View.List;
             this.listViewQuestions.SelectedIndexChanged += new System.EventHandler(this.listViewQuestions_SelectedIndexChanged);
             // 
+            // buttonAddAnswer
+            // 
+            this.buttonAddAnswer.BackgroundImage = global::programowanie_TestApp.Properties.Resources.if_sign_add_299068;
+            this.buttonAddAnswer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonAddAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddAnswer.Location = new System.Drawing.Point(4, 115);
+            this.buttonAddAnswer.Name = "buttonAddAnswer";
+            this.buttonAddAnswer.Size = new System.Drawing.Size(23, 23);
+            this.buttonAddAnswer.TabIndex = 5;
+            this.buttonAddAnswer.UseVisualStyleBackColor = true;
+            this.buttonAddAnswer.Click += new System.EventHandler(this.buttonAddAnswer_Click);
+            // 
             // groupBoxSettings
             // 
             this.groupBoxSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSettings.Controls.Add(this.buttonSave);
-            this.groupBoxSettings.Controls.Add(this.buttonAddQuestion);
             this.groupBoxSettings.Controls.Add(this.checkBoxMultiChoice);
             this.groupBoxSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.groupBoxSettings.Location = new System.Drawing.Point(465, 15);
@@ -122,16 +148,18 @@
             this.groupBoxSettings.TabStop = false;
             this.groupBoxSettings.Text = "Ustawienia pytania";
             // 
-            // buttonAddQuestion
+            // buttonSave
             // 
-            this.buttonAddQuestion.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonAddQuestion.Location = new System.Drawing.Point(6, 52);
-            this.buttonAddQuestion.Name = "buttonAddQuestion";
-            this.buttonAddQuestion.Size = new System.Drawing.Size(93, 30);
-            this.buttonAddQuestion.TabIndex = 5;
-            this.buttonAddQuestion.Text = "Dodaj pytanie";
-            this.buttonAddQuestion.UseVisualStyleBackColor = true;
-            this.buttonAddQuestion.Click += new System.EventHandler(this.buttonAddQuestion_Click);
+            this.buttonSave.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSave.Location = new System.Drawing.Point(6, 88);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(170, 28);
+            this.buttonSave.TabIndex = 6;
+            this.buttonSave.Text = "Zapisz zmiany";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // checkBoxMultiChoice
             // 
@@ -149,7 +177,7 @@
             // 
             this.labelOdpowiedzi.AutoSize = true;
             this.labelOdpowiedzi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelOdpowiedzi.Location = new System.Drawing.Point(11, 120);
+            this.labelOdpowiedzi.Location = new System.Drawing.Point(28, 120);
             this.labelOdpowiedzi.Name = "labelOdpowiedzi";
             this.labelOdpowiedzi.Size = new System.Drawing.Size(81, 17);
             this.labelOdpowiedzi.TabIndex = 3;
@@ -159,7 +187,7 @@
             // 
             this.labelTresc.AutoSize = true;
             this.labelTresc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTresc.Location = new System.Drawing.Point(11, 4);
+            this.labelTresc.Location = new System.Drawing.Point(28, 4);
             this.labelTresc.Name = "labelTresc";
             this.labelTresc.Size = new System.Drawing.Size(94, 17);
             this.labelTresc.TabIndex = 2;
@@ -172,7 +200,7 @@
             this.textBoxQuestionText.Multiline = true;
             this.textBoxQuestionText.Name = "textBoxQuestionText";
             this.textBoxQuestionText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxQuestionText.Size = new System.Drawing.Size(457, 93);
+            this.textBoxQuestionText.Size = new System.Drawing.Size(457, 83);
             this.textBoxQuestionText.TabIndex = 0;
             // 
             // panelAnswerContainer
@@ -186,19 +214,6 @@
             this.panelAnswerContainer.Name = "panelAnswerContainer";
             this.panelAnswerContainer.Size = new System.Drawing.Size(653, 375);
             this.panelAnswerContainer.TabIndex = 0;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSave.Location = new System.Drawing.Point(6, 88);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(170, 28);
-            this.buttonSave.TabIndex = 6;
-            this.buttonSave.Text = "Zapisz zmiany";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // ViewCreator
             // 
@@ -232,8 +247,9 @@
         private System.Windows.Forms.TextBox textBoxQuestionText;
         private System.Windows.Forms.GroupBox groupBoxSettings;
         private System.Windows.Forms.CheckBox checkBoxMultiChoice;
-        private System.Windows.Forms.Button buttonAddQuestion;
+        private System.Windows.Forms.Button buttonAddAnswer;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonAddQuestion;
     }
 }
 

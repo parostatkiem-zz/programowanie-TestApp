@@ -20,7 +20,7 @@ namespace programowanie_TestApp
         public event Func<int,Question> LoadSingleQuestion;
         public event Action<int,Question> UpdateSingleQuestion;
         public event Action<Question, Answer> RemoveAnswer;
-       
+        public event Action<bool> AddQuestion;
 
 
         public void RefreshData(List<Question> questions)
@@ -62,7 +62,7 @@ namespace programowanie_TestApp
                 singleAnswer.RemoveAnswer += SingleAnswer_RemoveAnswer;
                 panelAnswerContainer.Controls.Add(singleAnswer);
             }
-
+            try { panelAnswerContainer.ScrollControlIntoView(panelAnswerContainer.Controls[panelAnswerContainer.Controls.Count - 1]); } catch { }
 
         }
 
@@ -88,15 +88,13 @@ namespace programowanie_TestApp
             }
         }
 
-        private void buttonAddQuestion_Click(object sender, EventArgs e)
+        private void buttonAddAnswer_Click(object sender, EventArgs e)
         {
             Question currentQuestion = GetCurrentQuestion();
             if (currentQuestion == null) return;
             currentQuestion.Answers.Add(new Answer());
             UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
             DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
-
-
         }
 
         private void checkBoxMultiChoice_CheckedChanged(object sender, EventArgs e)
@@ -134,6 +132,12 @@ namespace programowanie_TestApp
 
             UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
             DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+        }
+
+        private void buttonAddQuestion_Click(object sender, EventArgs e)
+        {
+            AddQuestion(true);
+            RefreshData(LoadQuestions());
         }
     }
 }

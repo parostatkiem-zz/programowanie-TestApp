@@ -53,6 +53,14 @@ namespace programowanie_TestApp
 
         private const int DefaultNumberOfAnswers = 4;
         private string text = "";
+        public Question()
+        {
+            Text = "ZMIEŃ MNIE";
+            for (int i = 0; i < DefaultNumberOfAnswers; i++)
+            {
+                Answers.Add(new Answer());
+            }
+        }
 
     }
 

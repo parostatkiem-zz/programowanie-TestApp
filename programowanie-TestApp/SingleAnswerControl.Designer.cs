@@ -52,24 +52,24 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.BackgroundImage = global::programowanie_TestApp.Properties.Resources.if_Delete_1493279;
+            this.buttonDelete.BackgroundImage = global::programowanie_TestApp.Properties.Resources.if_sign_error_299045;
             this.buttonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Location = new System.Drawing.Point(319, 3);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(33, 25);
+            this.buttonDelete.Size = new System.Drawing.Size(23, 23);
             this.buttonDelete.TabIndex = 2;
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // SingleAnswer
+            // SingleAnswerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.checkBoxIsRight);
             this.Controls.Add(this.textBoxText);
-            this.Name = "SingleAnswer";
+            this.Name = "SingleAnswerControl";
             this.Size = new System.Drawing.Size(355, 31);
             this.ResumeLayout(false);
             this.PerformLayout();

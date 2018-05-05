@@ -43,6 +43,17 @@ namespace programowanie_TestApp
             catch { return false; }
             return true;
         }
+        public bool RemoveQuestion(Question q)
+        {
+            try
+            {
+                if (Questions.Count <= 1)
+                    return false; //próba usunięcia ostatniego pytania
+                Questions.Remove(q);
+            }
+            catch { return false; }
+            return true;
+        }
 
         public bool AddEmptyQuestion()
         {

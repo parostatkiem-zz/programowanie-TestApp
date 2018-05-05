@@ -21,6 +21,7 @@ namespace programowanie_TestApp
         public event Action<int,Question> UpdateSingleQuestion;
         public event Action<Question, Answer> RemoveAnswer;
         public event Action<bool> AddQuestion;
+        public event Action<Question> RemoveQuestion;
 
 
         public void RefreshData(List<Question> questions)
@@ -131,13 +132,29 @@ namespace programowanie_TestApp
             }
 
             UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+            RefreshData(LoadQuestions());
+           // DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
 
         private void buttonAddQuestion_Click(object sender, EventArgs e)
         {
             AddQuestion(true);
             RefreshData(LoadQuestions());
+        }
+
+        private void buttonRemoveQ_Click(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+
+            RemoveQuestion(currentQuestion);
+            RefreshData(LoadQuestions());
+            try
+            {
+                listViewQuestions.Items[0].Selected = true;
+                listViewQuestions.Select();
+            }
+            catch { }
         }
     }
 }

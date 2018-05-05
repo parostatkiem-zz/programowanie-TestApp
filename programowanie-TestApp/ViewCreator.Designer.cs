@@ -38,6 +38,7 @@
             this.listViewQuestions = new System.Windows.Forms.ListView();
             this.buttonAddAnswer = new System.Windows.Forms.Button();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveQ = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.checkBoxMultiChoice = new System.Windows.Forms.CheckBox();
             this.labelOdpowiedzi = new System.Windows.Forms.Label();
@@ -138,6 +139,7 @@
             // 
             this.groupBoxSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSettings.Controls.Add(this.buttonRemoveQ);
             this.groupBoxSettings.Controls.Add(this.buttonSave);
             this.groupBoxSettings.Controls.Add(this.checkBoxMultiChoice);
             this.groupBoxSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -147,6 +149,19 @@
             this.groupBoxSettings.TabIndex = 5;
             this.groupBoxSettings.TabStop = false;
             this.groupBoxSettings.Text = "Ustawienia pytania";
+            // 
+            // buttonRemoveQ
+            // 
+            this.buttonRemoveQ.BackColor = System.Drawing.Color.Tomato;
+            this.buttonRemoveQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonRemoveQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonRemoveQ.Location = new System.Drawing.Point(6, 49);
+            this.buttonRemoveQ.Name = "buttonRemoveQ";
+            this.buttonRemoveQ.Size = new System.Drawing.Size(170, 28);
+            this.buttonRemoveQ.TabIndex = 7;
+            this.buttonRemoveQ.Text = "Usuń pytanie";
+            this.buttonRemoveQ.UseVisualStyleBackColor = false;
+            this.buttonRemoveQ.Click += new System.EventHandler(this.buttonRemoveQ_Click);
             // 
             // buttonSave
             // 
@@ -250,6 +265,7 @@
         private System.Windows.Forms.Button buttonAddAnswer;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonAddQuestion;
+        private System.Windows.Forms.Button buttonRemoveQ;
     }
 }
 

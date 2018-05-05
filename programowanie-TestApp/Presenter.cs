@@ -19,6 +19,12 @@ namespace programowanie_TestApp
             view.UpdateSingleQuestion += View_UpdateSingleQuestion;
             view.RemoveAnswer += View_RemoveAnswer;
             view.AddQuestion += View_AddQuestion;
+            view.RemoveQuestion += View_RemoveQuestion;
+        }
+
+        private void View_RemoveQuestion(Question obj)
+        {
+            if (!model.RemoveQuestion(obj)) view.ShowError("Nie udało się usunąć pytania.\nPamiętaj, że lista pytań nie może być pusta!");
         }
 
         private void View_AddQuestion(bool obj)

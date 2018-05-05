@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
             System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
@@ -45,11 +46,13 @@
             this.labelTresc = new System.Windows.Forms.Label();
             this.textBoxQuestionText = new System.Windows.Forms.TextBox();
             this.panelAnswerContainer = new System.Windows.Forms.Panel();
+            this.mainErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBoxSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -230,6 +233,11 @@
             this.panelAnswerContainer.Size = new System.Drawing.Size(653, 375);
             this.panelAnswerContainer.TabIndex = 0;
             // 
+            // mainErrorProvider
+            // 
+            this.mainErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.mainErrorProvider.ContainerControl = this;
+            // 
             // ViewCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +255,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBoxSettings.ResumeLayout(false);
             this.groupBoxSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,6 +275,7 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonAddQuestion;
         private System.Windows.Forms.Button buttonRemoveQ;
+        private System.Windows.Forms.ErrorProvider mainErrorProvider;
     }
 }
 

@@ -61,5 +61,23 @@ namespace programowanie_TestApp
         {
             return new Answer(TypedText, IsRight);
         }
+
+        public bool ValidateControl()
+        {
+            errorProvider.Clear();
+            bool isValid = true;
+            if(TypedText=="")
+            {
+                errorProvider.SetError(textBoxText, "To pole nie może być puste!");
+                isValid = false;
+            }
+            //można dodać więcej warunków
+            return isValid;
+        }
+
+        private void textBoxText_TextChanged(object sender, EventArgs e)
+        {
+            ValidateControl();
+        }
     }
 }

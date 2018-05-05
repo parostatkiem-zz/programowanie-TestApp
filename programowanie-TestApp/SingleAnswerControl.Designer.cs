@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.checkBoxIsRight = new System.Windows.Forms.CheckBox();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxText
@@ -39,11 +42,12 @@
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(223, 20);
             this.textBoxText.TabIndex = 0;
+            this.textBoxText.TextChanged += new System.EventHandler(this.textBoxText_TextChanged);
             // 
             // checkBoxIsRight
             // 
             this.checkBoxIsRight.AutoSize = true;
-            this.checkBoxIsRight.Location = new System.Drawing.Point(233, 6);
+            this.checkBoxIsRight.Location = new System.Drawing.Point(249, 6);
             this.checkBoxIsRight.Name = "checkBoxIsRight";
             this.checkBoxIsRight.Size = new System.Drawing.Size(74, 17);
             this.checkBoxIsRight.TabIndex = 1;
@@ -62,6 +66,10 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // SingleAnswerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -71,6 +79,7 @@
             this.Controls.Add(this.textBoxText);
             this.Name = "SingleAnswerControl";
             this.Size = new System.Drawing.Size(355, 31);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +90,6 @@
         private System.Windows.Forms.TextBox textBoxText;
         private System.Windows.Forms.CheckBox checkBoxIsRight;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

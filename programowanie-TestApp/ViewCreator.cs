@@ -22,6 +22,7 @@ namespace programowanie_TestApp
         public event Action<Question, Answer> RemoveAnswer;
         public event Action<bool> AddQuestion;
         public event Action<Question> RemoveQuestion;
+
         private bool anyQuestionLoaded = false;
 
         public void RefreshData(List<Question> questions,int selectedIndex=0)
@@ -54,7 +55,12 @@ namespace programowanie_TestApp
 
         private void listViewQuestions_SelectedIndexChanged(object sender, EventArgs e)
         {   if (CurrentlySelectedQuestionIndex == -1) return;
-           // if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion())) return;
+            // if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion())) return;
+            if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion()))
+            {
+                ShowError("Ups, chyba nie wszystkie dane są poprawne", "Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
+                return;
+            }
             DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
 
@@ -212,7 +218,15 @@ namespace programowanie_TestApp
             { 
                 mainErrorProvider.SetError(labelOdpowiedzi, "Tylko jedna odpowiedź może być poprawna");
                 isValid = false;
-             }
+            }
+
+            if(textBoxQuestionText.Text.Length<=0)
+            {
+
+                mainErrorProvider.SetError(textBoxQuestionText, "To pole nie może być puste");
+                isValid = false;
+            }
+        
             
             foreach (Control c in panelAnswerContainer.Controls)
             {

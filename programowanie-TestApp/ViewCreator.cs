@@ -26,6 +26,8 @@ namespace programowanie_TestApp
         public event Action<bool> AddQuestion;
         public event Action<Question> RemoveQuestion;
         public event Action<bool> LoadEmptySet;
+
+        public event Action<string> SaveSet;
         public void RefreshData(List<Question> questions, int selectedIndex = 0)
         {
             listBoxQuestions.Items.Clear();
@@ -292,6 +294,13 @@ namespace programowanie_TestApp
 
         private void buttonSaveAll_Click(object sender, EventArgs e)
         {
+            if (CurrentFile == null)
+                buttonSaveAs.PerformClick();
+            if (CurrentFile == null) return;
+
+
+
+
 
         }
 

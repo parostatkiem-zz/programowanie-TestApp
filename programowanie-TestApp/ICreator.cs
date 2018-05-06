@@ -16,6 +16,7 @@ namespace programowanie_TestApp
         event Action<Question> RemoveQuestion;
 
         event Action<bool> LoadEmptySet;
+        event Action<string> SaveSet;
 
         void ShowError(string message);
         void ShowError(string title, string message);

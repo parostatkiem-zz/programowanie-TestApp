@@ -69,7 +69,7 @@ namespace programowanie_TestApp
             Questions.Clear();
         }
 
-        public bool SaveToXML()
+        public bool SaveToXML(string path)
         {
             return false;
         }

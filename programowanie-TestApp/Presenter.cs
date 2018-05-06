@@ -21,6 +21,12 @@ namespace programowanie_TestApp
             view.AddQuestion += View_AddQuestion;
             view.RemoveQuestion += View_RemoveQuestion;
             view.LoadEmptySet += View_LoadEmptySet;
+            view.SaveSet += View_SaveSet;
+        }
+
+        private void View_SaveSet(string path)
+        {
+            if (!model.SaveToXML(path)) view.ShowError("Nie udało się zapisać pliku.\nCzy na pewno masz uprawnienia do zapisu w tym miejscu?\n"+path);
         }
 
         private void View_LoadEmptySet(bool obj)

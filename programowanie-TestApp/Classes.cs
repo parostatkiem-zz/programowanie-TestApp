@@ -7,21 +7,17 @@ namespace programowanie_TestApp
 {
     public class Question
     {
+        public static string DefaultText = "ZMIEŃ MNIE";
         public List<Answer> Answers = new List<Answer>(); 
         public bool IsMultipleChoice { get; set; }
         public string Text { get; set; }
-
-      
-
         public int AnswersCount
         {
             get
             {
                 return Answers.Count;
-            }
-                
+            }   
         }
-
         public int RightAnswersCount
         {
             get
@@ -34,7 +30,14 @@ namespace programowanie_TestApp
                 return count;
             }
         }
-
+        public Question()
+        {
+            Text = DefaultText;
+            for (int i = 0; i < DefaultNumberOfAnswers; i++)
+            {
+                Answers.Add(new Answer());
+            }
+        }
         public Question(string text="",bool isMultiChoice=false)
         {
             //konstruktor
@@ -53,19 +56,14 @@ namespace programowanie_TestApp
 
         private const int DefaultNumberOfAnswers = 4;
         private string text = "";
-        public Question()
-        {
-            Text = "ZMIEŃ MNIE";
-            for (int i = 0; i < DefaultNumberOfAnswers; i++)
-            {
-                Answers.Add(new Answer());
-            }
-        }
+        
 
     }
 
     public class Answer
     {
+        public Answer() { }
+
         public bool IsRight { get; set; }
         public string Text { get; set; }
 
@@ -74,9 +72,7 @@ namespace programowanie_TestApp
             IsRight = _isRight;
             Text = _text;
         }
-
-        public Answer() { }
-
+       
         public override string ToString()
         {
             return Text;

@@ -54,7 +54,6 @@ namespace programowanie_TestApp
             catch { return false; }
             return true;
         }
-
         public bool AddEmptyQuestion()
         {
             try

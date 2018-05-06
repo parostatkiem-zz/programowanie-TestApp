@@ -11,21 +11,20 @@ namespace programowanie_TestApp
 {
     public partial class ViewCreator : Form,ICreator
     {
+
+        #region PUBLIC
         public ViewCreator()
         {
             InitializeComponent();
         }
 
         public event Func<List<Question>> LoadQuestions;
-        public event Func<int,Question> LoadSingleQuestion;
-        public event Action<int,Question> UpdateSingleQuestion;
+        public event Func<int, Question> LoadSingleQuestion;
+        public event Action<int, Question> UpdateSingleQuestion;
         public event Action<Question, Answer> RemoveAnswer;
         public event Action<bool> AddQuestion;
         public event Action<Question> RemoveQuestion;
-
-        private bool anyQuestionLoaded = false;
-
-        public void RefreshData(List<Question> questions,int selectedIndex=0)
+        public void RefreshData(List<Question> questions, int selectedIndex = 0)
         {
             listViewQuestions.Items.Clear();
 
@@ -47,6 +46,9 @@ namespace programowanie_TestApp
         }
 
 
+        #endregion
+
+        #region GeneratedEvents
 
         private void View1_Load(object sender, EventArgs e)
         {
@@ -54,8 +56,9 @@ namespace programowanie_TestApp
         }
 
         private void listViewQuestions_SelectedIndexChanged(object sender, EventArgs e)
-        {   if (CurrentlySelectedQuestionIndex == -1) return;
-            // if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion())) return;
+        {
+            if (CurrentlySelectedQuestionIndex == -1) return;
+
             if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion()))
             {
                 ShowError("Ups, chyba nie wszystkie dane są poprawne", "Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
@@ -63,6 +66,81 @@ namespace programowanie_TestApp
             }
             DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
+        private void buttonAddAnswer_Click(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+            currentQuestion.Answers.Add(new Answer());
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+        }
+
+        private void checkBoxMultiChoice_CheckedChanged(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+        }
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+
+
+
+            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
+            currentQuestion.Text = textBoxQuestionText.Text;
+
+            //dodać zapisywanie odpowiedzi
+
+            currentQuestion.Answers.Clear();
+            foreach (SingleAnswerControl s in panelAnswerContainer.Controls)
+            {
+                currentQuestion.Answers.Add(new Answer(s.TypedText, s.IsRight));
+            }
+
+            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
+            if (!ValidateSingleQuestion(GetCurrentQuestion()))
+            {
+                ShowError("Ups, chyba nie wszystkie dane są poprawne", "Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
+                return;
+            }
+            RefreshData(LoadQuestions(), CurrentlySelectedQuestionIndex);
+
+
+
+
+            // DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+        }
+
+        private void buttonAddQuestion_Click(object sender, EventArgs e)
+        {
+            AddQuestion(true);
+            RefreshData(LoadQuestions());
+        }
+
+        private void buttonRemoveQ_Click(object sender, EventArgs e)
+        {
+            Question currentQuestion = GetCurrentQuestion();
+            if (currentQuestion == null) return;
+
+            RemoveQuestion(currentQuestion);
+            RefreshData(LoadQuestions());
+            try
+            {
+                listViewQuestions.Items[0].Selected = true;
+                listViewQuestions.Select();
+            }
+            catch { }
+        }
+
+        #endregion
+
+        #region PRIVATE
+        private bool anyQuestionLoaded = false;
 
         private void DisplayQuestion(Question q)
         {
@@ -101,8 +179,7 @@ namespace programowanie_TestApp
                 ListView.SelectedIndexCollection indices = listViewQuestions.SelectedIndices;
 
                 if (indices.Count <= 0) return -1;
-                return indices[0];
-                
+                return indices[0];  
             }
             set
             {
@@ -115,24 +192,7 @@ namespace programowanie_TestApp
             }
         }
 
-        private void buttonAddAnswer_Click(object sender, EventArgs e)
-        {
-            Question currentQuestion = GetCurrentQuestion();
-            if (currentQuestion == null) return;
-            currentQuestion.Answers.Add(new Answer());
-            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
-        }
-
-        private void checkBoxMultiChoice_CheckedChanged(object sender, EventArgs e)
-        {
-            Question currentQuestion = GetCurrentQuestion();
-            if (currentQuestion == null) return;
-            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
-            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
-        }
-
+       
         private Question GetCurrentQuestion()
         {
             if (CurrentlySelectedQuestionIndex == -1) return null;
@@ -141,60 +201,7 @@ namespace programowanie_TestApp
             return q;
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            
-            Question currentQuestion = GetCurrentQuestion();
-            if (currentQuestion == null) return;
-
-
-
-            currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
-            currentQuestion.Text = textBoxQuestionText.Text;
-
-            //dodać zapisywanie odpowiedzi
-
-            currentQuestion.Answers.Clear();
-            foreach(SingleAnswerControl s in panelAnswerContainer.Controls)
-            {
-                currentQuestion.Answers.Add(new Answer(s.TypedText, s.IsRight));
-            }
-            
-            UpdateSingleQuestion(CurrentlySelectedQuestionIndex, currentQuestion);
-            if (!ValidateSingleQuestion(GetCurrentQuestion()))
-            {
-                ShowError("Ups, chyba nie wszystkie dane są poprawne","Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
-                return;
-            }
-            RefreshData(LoadQuestions(),CurrentlySelectedQuestionIndex);
         
-
-
-
-            // DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
-        }
-
-        private void buttonAddQuestion_Click(object sender, EventArgs e)
-        {
-            AddQuestion(true);
-            RefreshData(LoadQuestions());
-        }
-
-        private void buttonRemoveQ_Click(object sender, EventArgs e)
-        {
-            Question currentQuestion = GetCurrentQuestion();
-            if (currentQuestion == null) return;
-
-            RemoveQuestion(currentQuestion);
-            RefreshData(LoadQuestions());
-            try
-            {
-                listViewQuestions.Items[0].Selected = true;
-                listViewQuestions.Select();
-            }
-            catch { }
-        }
-
         private bool ValidateSingleQuestion(Question theQuestion)
         {
             //  Question theQuestion = GetCurrentQuestion();
@@ -226,8 +233,15 @@ namespace programowanie_TestApp
                 mainErrorProvider.SetError(textBoxQuestionText, "To pole nie może być puste");
                 isValid = false;
             }
-        
-            
+
+            if (textBoxQuestionText.Text==Question.DefaultText)
+            {
+
+                mainErrorProvider.SetError(textBoxQuestionText, "Hmm.. ktoś chyba zapomniał tu coś wpisać");
+                isValid = false;
+            }
+
+
             foreach (Control c in panelAnswerContainer.Controls)
             {
                 if (!(c is SingleAnswerControl)) continue;
@@ -237,5 +251,6 @@ namespace programowanie_TestApp
             }
             return isValid;
         }
+        #endregion
     }
 }

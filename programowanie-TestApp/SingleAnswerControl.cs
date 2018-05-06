@@ -11,6 +11,7 @@ namespace programowanie_TestApp
 {
     public partial class SingleAnswerControl : UserControl
     {
+        #region PUBLIC
         public event Action<Answer> RemoveAnswer;
         public SingleAnswerControl()
         {
@@ -22,7 +23,6 @@ namespace programowanie_TestApp
             InitializeComponent();
             this.TypedText = _text;
             this.IsRight = _isRight;
-            
         }
 
         public string TypedText
@@ -49,8 +49,10 @@ namespace programowanie_TestApp
             {
                 checkBoxIsRight.Checked = value;
             }
-            //dodać setter
         }
+        #endregion
+
+        #region PRIVATE
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -66,7 +68,7 @@ namespace programowanie_TestApp
         {
             errorProvider.Clear();
             bool isValid = true;
-            if(TypedText=="")
+            if (TypedText == "")
             {
                 errorProvider.SetError(textBoxText, "To pole nie może być puste!");
                 isValid = false;
@@ -79,5 +81,7 @@ namespace programowanie_TestApp
         {
             ValidateControl();
         }
+        #endregion
+
     }
 }

@@ -14,7 +14,14 @@ namespace programowanie_TestApp
         event Action<Question, Answer> RemoveAnswer;
         event Action<bool> AddQuestion;
         event Action<Question> RemoveQuestion;
+
+        event Action<bool> LoadEmptySet;
+
         void ShowError(string message);
-        
+        void ShowError(string title, string message);
+        bool ShowConfirmation(string message);
+
+
+
     }
 }

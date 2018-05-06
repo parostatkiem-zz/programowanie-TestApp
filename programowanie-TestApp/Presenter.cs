@@ -20,6 +20,12 @@ namespace programowanie_TestApp
             view.RemoveAnswer += View_RemoveAnswer;
             view.AddQuestion += View_AddQuestion;
             view.RemoveQuestion += View_RemoveQuestion;
+            view.LoadEmptySet += View_LoadEmptySet;
+        }
+
+        private void View_LoadEmptySet(bool obj)
+        {
+            model.LoadEmptySet();
         }
 
         private void View_RemoveQuestion(Question obj)

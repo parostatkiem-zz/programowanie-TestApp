@@ -58,10 +58,15 @@ namespace programowanie_TestApp
         {
             try
             {
-                Questions.Add(new Question());
+                Questions.Add(new Question(true));
             }
             catch { return false; }
             return true;
+        }
+
+        public void LoadEmptySet()
+        {
+            Questions.Clear();
         }
 
         public bool SaveToXML()

@@ -24,12 +24,14 @@ namespace programowanie_TestApp
         public event Action<Question, Answer> RemoveAnswer;
         public event Action<bool> AddQuestion;
         public event Action<Question> RemoveQuestion;
+        public event Action<bool> LoadEmptySet;
         public void RefreshData(List<Question> questions, int selectedIndex = 0)
         {
             listBoxQuestions.Items.Clear();
 
             foreach (Question q in questions)
                 listBoxQuestions.Items.Add(q.ToString());
+            DisplayQuestion(null);
             CurrentlySelectedQuestionIndex = selectedIndex;
 
         }
@@ -42,6 +44,14 @@ namespace programowanie_TestApp
         public void ShowError(string title, string message)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //TODO: można zmienić na coś bardziej ambitnego
+        }
+
+        public bool ShowConfirmation(string message)
+        {
+            if (MessageBox.Show(message, "Potwierdź", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                return true;
+            return false;
             //TODO: można zmienić na coś bardziej ambitnego
         }
 
@@ -141,6 +151,12 @@ namespace programowanie_TestApp
         private void DisplayQuestion(Question q)
         {
             anyQuestionLoaded = true;
+            if (q==null)
+            {
+                anyQuestionLoaded = false;
+                q = new Question(false);
+            }
+            
             mainErrorProvider.Clear();
             textBoxQuestionText.Text = q.Text;
 
@@ -251,5 +267,13 @@ namespace programowanie_TestApp
             return isValid;
         }
         #endregion
+
+        private void buttonLoadEmpty_Click(object sender, EventArgs e)
+        {
+            if (!ShowConfirmation("Czy na pewno chcesz załadować nowy, pusty test?\nWszystkie niezapisane postępy zostaną utracone!")) return;
+            LoadEmptySet(true);
+            RefreshData(LoadQuestions());
+
+        }
     }
 }

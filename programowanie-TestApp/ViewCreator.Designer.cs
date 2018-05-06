@@ -269,6 +269,7 @@
             this.buttonLoadEmpty.TabIndex = 10;
             this.buttonLoadEmpty.Text = "Nowy test";
             this.buttonLoadEmpty.UseVisualStyleBackColor = true;
+            this.buttonLoadEmpty.Click += new System.EventHandler(this.buttonLoadEmpty_Click);
             // 
             // buttonOpen
             // 

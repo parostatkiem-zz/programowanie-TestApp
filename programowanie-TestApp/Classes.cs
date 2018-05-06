@@ -30,12 +30,15 @@ namespace programowanie_TestApp
                 return count;
             }
         }
-        public Question()
+        public Question(bool loadDefaults=true)
         {
-            Text = DefaultText;
-            for (int i = 0; i < DefaultNumberOfAnswers; i++)
+            if(loadDefaults)
             {
-                Answers.Add(new Answer());
+                Text = DefaultText;
+                for (int i = 0; i < DefaultNumberOfAnswers; i++)
+                {
+                    Answers.Add(new Answer());
+                }
             }
         }
         public Question(string text="",bool isMultiChoice=false)

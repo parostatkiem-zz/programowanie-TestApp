@@ -298,7 +298,7 @@ namespace programowanie_TestApp
                 buttonSaveAs.PerformClick();
             if (CurrentFile == null) return;
 
-
+            SaveSet(CurrentFile.FullName);
 
 
 

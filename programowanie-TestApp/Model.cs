@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace programowanie_TestApp
 {
@@ -71,7 +73,39 @@ namespace programowanie_TestApp
 
         public bool SaveToXML(string path)
         {
-            return false;
+            try
+            {
+                using (XmlWriter writer = XmlWriter.Create(path))
+                {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("test");
+
+                writer.WriteElementString("title", "tytuł"); //CHANGE ME
+
+                    writer.WriteStartElement("questions");
+                        foreach (Question q in Questions)
+                        {
+                        writer.WriteStartElement("question");
+                        writer.WriteAttributeString("multiChoice",q.IsMultipleChoice.ToString());
+                            writer.WriteElementString("text", q.Text); 
+                            foreach(Answer a in q.Answers)
+                            {
+                            writer.WriteStartElement("answer");
+                                writer.WriteAttributeString("right", a.IsRight.ToString());
+                                writer.WriteElementString("text", a.Text);
+                            writer.WriteEndElement();
+
+                            }
+                         writer.WriteEndElement();
+                        }
+
+                   writer.WriteEndElement(); //questions
+                writer.WriteEndElement(); //test
+                writer.WriteEndDocument();
+                }
+            }
+            catch { return false; }
+            return true;
         }
     }
 }

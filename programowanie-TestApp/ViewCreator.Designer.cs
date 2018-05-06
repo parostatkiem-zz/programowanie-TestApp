@@ -43,6 +43,11 @@
             this.panelAnswerContainer = new System.Windows.Forms.Panel();
             this.mainErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.listBoxQuestions = new System.Windows.Forms.ListBox();
+            this.buttonSaveAll = new System.Windows.Forms.Button();
+            this.buttonSaveAs = new System.Windows.Forms.Button();
+            this.buttonLoadEmpty = new System.Windows.Forms.Button();
+            this.buttonOpen = new System.Windows.Forms.Button();
+            this.labelCopyright = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,10 +65,15 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.labelCopyright);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonOpen);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonLoadEmpty);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonSaveAs);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonSaveAll);
             this.splitContainer1.Panel1.Controls.Add(this.listBoxQuestions);
             this.splitContainer1.Panel1.Controls.Add(this.buttonAddQuestion);
             this.splitContainer1.Panel1.Controls.Add(this.labelPytania);
-            this.splitContainer1.Panel1MinSize = 250;
+            this.splitContainer1.Panel1MinSize = 313;
             // 
             // splitContainer1.Panel2
             // 
@@ -226,9 +236,60 @@
             "Pytanie 2"});
             this.listBoxQuestions.Location = new System.Drawing.Point(3, 27);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(305, 404);
+            this.listBoxQuestions.Size = new System.Drawing.Size(305, 420);
             this.listBoxQuestions.TabIndex = 7;
             this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listViewQuestions_SelectedIndexChanged);
+            // 
+            // buttonSaveAll
+            // 
+            this.buttonSaveAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveAll.Location = new System.Drawing.Point(3, 463);
+            this.buttonSaveAll.Name = "buttonSaveAll";
+            this.buttonSaveAll.Size = new System.Drawing.Size(189, 23);
+            this.buttonSaveAll.TabIndex = 8;
+            this.buttonSaveAll.Text = "Zapisz";
+            this.buttonSaveAll.UseVisualStyleBackColor = true;
+            // 
+            // buttonSaveAs
+            // 
+            this.buttonSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveAs.Location = new System.Drawing.Point(198, 463);
+            this.buttonSaveAs.Name = "buttonSaveAs";
+            this.buttonSaveAs.Size = new System.Drawing.Size(110, 23);
+            this.buttonSaveAs.TabIndex = 9;
+            this.buttonSaveAs.Text = "Zapisz jako...";
+            this.buttonSaveAs.UseVisualStyleBackColor = true;
+            // 
+            // buttonLoadEmpty
+            // 
+            this.buttonLoadEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLoadEmpty.Location = new System.Drawing.Point(3, 492);
+            this.buttonLoadEmpty.Name = "buttonLoadEmpty";
+            this.buttonLoadEmpty.Size = new System.Drawing.Size(86, 23);
+            this.buttonLoadEmpty.TabIndex = 10;
+            this.buttonLoadEmpty.Text = "Nowy test";
+            this.buttonLoadEmpty.UseVisualStyleBackColor = true;
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpen.Location = new System.Drawing.Point(95, 492);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(97, 23);
+            this.buttonOpen.TabIndex = 11;
+            this.buttonOpen.Text = "Otwórz...";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            // 
+            // labelCopyright
+            // 
+            this.labelCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCopyright.AutoSize = true;
+            this.labelCopyright.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.labelCopyright.Location = new System.Drawing.Point(198, 497);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(108, 13);
+            this.labelCopyright.TabIndex = 12;
+            this.labelCopyright.Text = "© Jan Sudczak 2018";
             // 
             // ViewCreator
             // 
@@ -238,7 +299,7 @@
             this.Controls.Add(this.splitContainer1);
             this.MinimumSize = new System.Drawing.Size(815, 294);
             this.Name = "ViewCreator";
-            this.Text = "Form1";
+            this.Text = "Generator testów";
             this.Load += new System.EventHandler(this.View1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -269,6 +330,11 @@
         private System.Windows.Forms.Button buttonRemoveQ;
         private System.Windows.Forms.ErrorProvider mainErrorProvider;
         private System.Windows.Forms.ListBox listBoxQuestions;
+        private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.Button buttonOpen;
+        private System.Windows.Forms.Button buttonLoadEmpty;
+        private System.Windows.Forms.Button buttonSaveAs;
+        private System.Windows.Forms.Button buttonSaveAll;
     }
 }
 

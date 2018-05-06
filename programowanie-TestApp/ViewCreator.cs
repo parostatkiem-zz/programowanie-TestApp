@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace programowanie_TestApp
@@ -146,6 +147,19 @@ namespace programowanie_TestApp
         #endregion
 
         #region PRIVATE
+        private FileInfo currentFile;
+        private FileInfo CurrentFile
+        {
+            get { return currentFile; }
+            set
+            {
+                if (value == null) return;
+                currentFile = value;
+                buttonSaveAll.Text = "Zapisz " + currentFile.Name;
+             //   buttonSave.Refresh();
+            }
+        }
+
         private bool anyQuestionLoaded = false;
 
         private void DisplayQuestion(Question q)
@@ -274,6 +288,28 @@ namespace programowanie_TestApp
             LoadEmptySet(true);
             RefreshData(LoadQuestions());
 
+        }
+
+        private void buttonSaveAll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName==null || saveFileDialog.FileName == "") return;
+            CurrentFile = new FileInfo(saveFileDialog.FileName);
+        }
+
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            if (!saveFileDialog.FileName.EndsWith(".xml"))
+            {
+                ShowError("Wskazany plik MUSI mieć rozszerzenie '.xml'!\nSpróbuj jeszcze raz...");
+                 e.Cancel = true;
+                return; 
+            }
         }
     }
 }

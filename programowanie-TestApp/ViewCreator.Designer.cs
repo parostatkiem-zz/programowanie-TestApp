@@ -48,6 +48,7 @@
             this.buttonLoadEmpty = new System.Windows.Forms.Button();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.labelCopyright = new System.Windows.Forms.Label();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -249,6 +250,7 @@
             this.buttonSaveAll.TabIndex = 8;
             this.buttonSaveAll.Text = "Zapisz";
             this.buttonSaveAll.UseVisualStyleBackColor = true;
+            this.buttonSaveAll.Click += new System.EventHandler(this.buttonSaveAll_Click);
             // 
             // buttonSaveAs
             // 
@@ -259,6 +261,7 @@
             this.buttonSaveAs.TabIndex = 9;
             this.buttonSaveAs.Text = "Zapisz jako...";
             this.buttonSaveAs.UseVisualStyleBackColor = true;
+            this.buttonSaveAs.Click += new System.EventHandler(this.buttonSaveAs_Click);
             // 
             // buttonLoadEmpty
             // 
@@ -291,6 +294,14 @@
             this.labelCopyright.Size = new System.Drawing.Size(108, 13);
             this.labelCopyright.TabIndex = 12;
             this.labelCopyright.Text = "© Jan Sudczak 2018";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.CreatePrompt = true;
+            this.saveFileDialog.DefaultExt = "xml";
+            this.saveFileDialog.Filter = "XML|*.xml";
+            this.saveFileDialog.Title = "Wybierz miejsce zapisania pliku";
+            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
             // 
             // ViewCreator
             // 
@@ -336,6 +347,7 @@
         private System.Windows.Forms.Button buttonLoadEmpty;
         private System.Windows.Forms.Button buttonSaveAs;
         private System.Windows.Forms.Button buttonSaveAll;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

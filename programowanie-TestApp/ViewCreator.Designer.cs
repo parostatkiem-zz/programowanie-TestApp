@@ -77,9 +77,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.labelTresc);
             this.splitContainer1.Panel2.Controls.Add(this.textBoxQuestionText);
             this.splitContainer1.Panel2.Controls.Add(this.panelAnswerContainer);
-            this.splitContainer1.Panel2MinSize = 640;
-            this.splitContainer1.Size = new System.Drawing.Size(984, 520);
-            this.splitContainer1.SplitterDistance = 320;
+            this.splitContainer1.Panel2MinSize = 440;
+            this.splitContainer1.Size = new System.Drawing.Size(1001, 520);
+            this.splitContainer1.SplitterDistance = 313;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonAddQuestion
@@ -120,7 +120,7 @@
             this.listViewQuestions.Location = new System.Drawing.Point(0, 24);
             this.listViewQuestions.MultiSelect = false;
             this.listViewQuestions.Name = "listViewQuestions";
-            this.listViewQuestions.Size = new System.Drawing.Size(318, 491);
+            this.listViewQuestions.Size = new System.Drawing.Size(308, 756);
             this.listViewQuestions.TabIndex = 0;
             this.listViewQuestions.UseCompatibleStateImageBehavior = false;
             this.listViewQuestions.View = System.Windows.Forms.View.List;
@@ -140,13 +140,12 @@
             // 
             // groupBoxSettings
             // 
-            this.groupBoxSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSettings.Controls.Add(this.buttonRemoveQ);
             this.groupBoxSettings.Controls.Add(this.buttonSave);
             this.groupBoxSettings.Controls.Add(this.checkBoxMultiChoice);
             this.groupBoxSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBoxSettings.Location = new System.Drawing.Point(465, 15);
+            this.groupBoxSettings.Location = new System.Drawing.Point(495, 5);
             this.groupBoxSettings.Name = "groupBoxSettings";
             this.groupBoxSettings.Size = new System.Drawing.Size(182, 122);
             this.groupBoxSettings.TabIndex = 5;
@@ -214,11 +213,13 @@
             // textBoxQuestionText
             // 
             this.textBoxQuestionText.AcceptsReturn = true;
+            this.textBoxQuestionText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxQuestionText.Location = new System.Drawing.Point(2, 24);
             this.textBoxQuestionText.Multiline = true;
             this.textBoxQuestionText.Name = "textBoxQuestionText";
             this.textBoxQuestionText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxQuestionText.Size = new System.Drawing.Size(457, 83);
+            this.textBoxQuestionText.Size = new System.Drawing.Size(477, 85);
             this.textBoxQuestionText.TabIndex = 0;
             // 
             // panelAnswerContainer
@@ -230,7 +231,7 @@
             this.panelAnswerContainer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelAnswerContainer.Location = new System.Drawing.Point(2, 140);
             this.panelAnswerContainer.Name = "panelAnswerContainer";
-            this.panelAnswerContainer.Size = new System.Drawing.Size(653, 375);
+            this.panelAnswerContainer.Size = new System.Drawing.Size(677, 375);
             this.panelAnswerContainer.TabIndex = 0;
             // 
             // mainErrorProvider
@@ -242,8 +243,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 520);
+            this.ClientSize = new System.Drawing.Size(1001, 520);
             this.Controls.Add(this.splitContainer1);
+            this.MinimumSize = new System.Drawing.Size(815, 294);
             this.Name = "ViewCreator";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.View1_Load);

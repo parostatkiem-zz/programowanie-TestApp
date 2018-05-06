@@ -155,6 +155,8 @@ namespace programowanie_TestApp
             {
                 var singleAnswer = new SingleAnswerControl(a.Text,a.IsRight);
                 singleAnswer.Top = singleAnswer.Height * q.Answers.IndexOf(a);
+                singleAnswer.Width = panelAnswerContainer.Width - 10;
+                singleAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)(((AnchorStyles.Left | AnchorStyles.Right |AnchorStyles.Top))));
                 singleAnswer.RemoveAnswer += SingleAnswer_RemoveAnswer;
                 panelAnswerContainer.Controls.Add(singleAnswer);
             }

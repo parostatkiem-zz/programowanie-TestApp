@@ -38,6 +38,8 @@
             // 
             // textBoxText
             // 
+            this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxText.Location = new System.Drawing.Point(4, 4);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(223, 20);
@@ -46,8 +48,9 @@
             // 
             // checkBoxIsRight
             // 
+            this.checkBoxIsRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxIsRight.AutoSize = true;
-            this.checkBoxIsRight.Location = new System.Drawing.Point(249, 6);
+            this.checkBoxIsRight.Location = new System.Drawing.Point(246, 6);
             this.checkBoxIsRight.Name = "checkBoxIsRight";
             this.checkBoxIsRight.Size = new System.Drawing.Size(74, 17);
             this.checkBoxIsRight.TabIndex = 1;
@@ -56,10 +59,11 @@
             // 
             // buttonDelete
             // 
+            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.BackgroundImage = global::programowanie_TestApp.Properties.Resources.if_sign_error_299045;
             this.buttonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Location = new System.Drawing.Point(319, 3);
+            this.buttonDelete.Location = new System.Drawing.Point(316, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(23, 23);
             this.buttonDelete.TabIndex = 2;
@@ -77,8 +81,9 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.checkBoxIsRight);
             this.Controls.Add(this.textBoxText);
+            this.MinimumSize = new System.Drawing.Size(189, 31);
             this.Name = "SingleAnswerControl";
-            this.Size = new System.Drawing.Size(355, 31);
+            this.Size = new System.Drawing.Size(342, 31);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

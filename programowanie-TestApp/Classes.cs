@@ -62,7 +62,7 @@ namespace programowanie_TestApp
 
     public class Answer
     {
-        public Answer() { }
+        public Answer() { Text = ""; }
 
         public bool IsRight { get; set; }
         public string Text { get; set; }

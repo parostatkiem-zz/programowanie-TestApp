@@ -29,14 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.buttonAddQuestion = new System.Windows.Forms.Button();
             this.labelPytania = new System.Windows.Forms.Label();
-            this.listViewQuestions = new System.Windows.Forms.ListView();
             this.buttonAddAnswer = new System.Windows.Forms.Button();
             this.groupBoxSettings = new System.Windows.Forms.GroupBox();
             this.buttonRemoveQ = new System.Windows.Forms.Button();
@@ -47,6 +42,7 @@
             this.textBoxQuestionText = new System.Windows.Forms.TextBox();
             this.panelAnswerContainer = new System.Windows.Forms.Panel();
             this.mainErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.listBoxQuestions = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,9 +60,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxQuestions);
             this.splitContainer1.Panel1.Controls.Add(this.buttonAddQuestion);
             this.splitContainer1.Panel1.Controls.Add(this.labelPytania);
-            this.splitContainer1.Panel1.Controls.Add(this.listViewQuestions);
             this.splitContainer1.Panel1MinSize = 250;
             // 
             // splitContainer1.Panel2
@@ -103,28 +99,6 @@
             this.labelPytania.Size = new System.Drawing.Size(62, 17);
             this.labelPytania.TabIndex = 1;
             this.labelPytania.Text = "Pytania";
-            // 
-            // listViewQuestions
-            // 
-            this.listViewQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listViewQuestions.FullRowSelect = true;
-            this.listViewQuestions.GridLines = true;
-            this.listViewQuestions.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8});
-            this.listViewQuestions.Location = new System.Drawing.Point(0, 24);
-            this.listViewQuestions.MultiSelect = false;
-            this.listViewQuestions.Name = "listViewQuestions";
-            this.listViewQuestions.Size = new System.Drawing.Size(308, 756);
-            this.listViewQuestions.TabIndex = 0;
-            this.listViewQuestions.UseCompatibleStateImageBehavior = false;
-            this.listViewQuestions.View = System.Windows.Forms.View.List;
-            this.listViewQuestions.SelectedIndexChanged += new System.EventHandler(this.listViewQuestions_SelectedIndexChanged);
             // 
             // buttonAddAnswer
             // 
@@ -239,6 +213,23 @@
             this.mainErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.mainErrorProvider.ContainerControl = this;
             // 
+            // listBoxQuestions
+            // 
+            this.listBoxQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listBoxQuestions.FormattingEnabled = true;
+            this.listBoxQuestions.ItemHeight = 16;
+            this.listBoxQuestions.Items.AddRange(new object[] {
+            "Pytanie 1",
+            "Pytanie 2"});
+            this.listBoxQuestions.Location = new System.Drawing.Point(3, 27);
+            this.listBoxQuestions.Name = "listBoxQuestions";
+            this.listBoxQuestions.Size = new System.Drawing.Size(305, 404);
+            this.listBoxQuestions.TabIndex = 7;
+            this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listViewQuestions_SelectedIndexChanged);
+            // 
             // ViewCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,7 +257,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panelAnswerContainer;
-        private System.Windows.Forms.ListView listViewQuestions;
         private System.Windows.Forms.Label labelPytania;
         private System.Windows.Forms.Label labelOdpowiedzi;
         private System.Windows.Forms.Label labelTresc;
@@ -278,6 +268,7 @@
         private System.Windows.Forms.Button buttonAddQuestion;
         private System.Windows.Forms.Button buttonRemoveQ;
         private System.Windows.Forms.ErrorProvider mainErrorProvider;
+        private System.Windows.Forms.ListBox listBoxQuestions;
     }
 }
 

@@ -26,10 +26,10 @@ namespace programowanie_TestApp
         public event Action<Question> RemoveQuestion;
         public void RefreshData(List<Question> questions, int selectedIndex = 0)
         {
-            listViewQuestions.Items.Clear();
+            listBoxQuestions.Items.Clear();
 
             foreach (Question q in questions)
-                listViewQuestions.Items.Add(q.ToString());
+                listBoxQuestions.Items.Add(q.ToString());
             CurrentlySelectedQuestionIndex = selectedIndex;
 
         }
@@ -59,12 +59,7 @@ namespace programowanie_TestApp
         {
             if (CurrentlySelectedQuestionIndex == -1) return;
 
-            if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion()))
-            {
-                ShowError("Ups, chyba nie wszystkie dane są poprawne", "Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
-                return;
-            }
-            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
+            DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));                   
         }
         private void buttonAddAnswer_Click(object sender, EventArgs e)
         {
@@ -131,8 +126,9 @@ namespace programowanie_TestApp
             RefreshData(LoadQuestions());
             try
             {
-                listViewQuestions.Items[0].Selected = true;
-                listViewQuestions.Select();
+                //listViewQuestions.Items[0].Selected = true;
+                listBoxQuestions.SelectedItem = listBoxQuestions.Items[0];
+                listBoxQuestions.Select();
             }
             catch { }
         }
@@ -161,7 +157,7 @@ namespace programowanie_TestApp
                 panelAnswerContainer.Controls.Add(singleAnswer);
             }
             try { panelAnswerContainer.ScrollControlIntoView(panelAnswerContainer.Controls[panelAnswerContainer.Controls.Count - 1]); } catch { }
-
+            if (anyQuestionLoaded && !ValidateSingleQuestion(GetCurrentQuestion())) return;
         }
 
         private void SingleAnswer_RemoveAnswer(Answer obj)
@@ -177,8 +173,8 @@ namespace programowanie_TestApp
         {
             get
             { 
-                if (listViewQuestions.SelectedItems == null) return -1;
-                ListView.SelectedIndexCollection indices = listViewQuestions.SelectedIndices;
+                if (listBoxQuestions.SelectedItems == null) return -1;
+                ListBox.SelectedIndexCollection indices = listBoxQuestions.SelectedIndices;
 
                 if (indices.Count <= 0) return -1;
                 return indices[0];  
@@ -187,8 +183,9 @@ namespace programowanie_TestApp
             {
                 try
                 {
-                    listViewQuestions.Items[value].Selected = true;
-                    listViewQuestions.Select();
+                    listBoxQuestions.SelectedItem = listBoxQuestions.Items[value];
+                   // listViewQuestions.Items[value].Selected = true;
+                    listBoxQuestions.Select();
                 }
                 catch { }
             }

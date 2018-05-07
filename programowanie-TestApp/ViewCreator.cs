@@ -27,9 +27,11 @@ namespace programowanie_TestApp
         public event Action<Question> RemoveQuestion;
         public event Action<bool> LoadEmptySet;
         public event Action<string> LoadSet;
-        public event Action<string> SaveSet;
-        public void RefreshData(List<Question> questions, int selectedIndex = 0)
+        public event Func<Test> LoadTestObject;
+        public event Action<string,string> SaveSet;
+        public void RefreshData(List<Question> questions, Test testObj, int selectedIndex = 0)
         {
+            textBoxTestName.Text = testObj.Name;
             listBoxQuestions.Items.Clear();
 
             foreach (Question q in questions)
@@ -65,7 +67,7 @@ namespace programowanie_TestApp
 
         private void View1_Load(object sender, EventArgs e)
         {
-            RefreshData(LoadQuestions());
+            RefreshData(LoadQuestions(),LoadTestObject());
         }
 
         private void listViewQuestions_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,7 +118,7 @@ namespace programowanie_TestApp
                 ShowError("Ups, chyba nie wszystkie dane są poprawne", "Najedź kursorem na czerwone wykrzykniki, przeczytaj o co chodzi i spróbuj zlikwidować problem");
                 return;
             }
-            RefreshData(LoadQuestions(), CurrentlySelectedQuestionIndex);
+            RefreshData(LoadQuestions(), LoadTestObject(), CurrentlySelectedQuestionIndex);
 
 
 
@@ -127,7 +129,7 @@ namespace programowanie_TestApp
         private void buttonAddQuestion_Click(object sender, EventArgs e)
         {
             AddQuestion(true);
-            RefreshData(LoadQuestions());
+            RefreshData(LoadQuestions(), LoadTestObject());
         }
 
         private void buttonRemoveQ_Click(object sender, EventArgs e)
@@ -136,14 +138,58 @@ namespace programowanie_TestApp
             if (currentQuestion == null) return;
 
             RemoveQuestion(currentQuestion);
-            RefreshData(LoadQuestions());
+            RefreshData(LoadQuestions(), LoadTestObject());
             try
             {
-                //listViewQuestions.Items[0].Selected = true;
                 listBoxQuestions.SelectedItem = listBoxQuestions.Items[0];
                 listBoxQuestions.Select();
             }
             catch { }
+        }
+
+        private void buttonLoadEmpty_Click(object sender, EventArgs e)
+        {
+            if (!ShowConfirmation("Czy na pewno chcesz załadować nowy, pusty test?\nWszystkie niezapisane postępy zostaną utracone!")) return;
+            CurrentFile = null; //ewentualnie mozna usunąć
+            LoadEmptySet(true);
+            RefreshData(LoadQuestions(), LoadTestObject());
+
+        }
+
+        private void buttonSaveAll_Click(object sender, EventArgs e)
+        {
+            if (CurrentFile == null)
+                buttonSaveAs.PerformClick();
+            if (CurrentFile == null) return;
+
+            SaveSet(CurrentFile.FullName,textBoxTestName.Text);
+        }
+
+        private void buttonSaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName == null || saveFileDialog.FileName == "") return;
+            CurrentFile = new FileInfo(saveFileDialog.FileName);
+            buttonSaveAll.PerformClick();
+        }
+
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            if (!saveFileDialog.FileName.EndsWith(".xml"))
+            {
+                ShowError("Wskazany plik MUSI mieć rozszerzenie '.xml'!\nSpróbuj jeszcze raz...");
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            openFileDialog.ShowDialog();
+            if (openFileDialog.FileName == null || openFileDialog.FileName == "") return;
+            CurrentFile = new FileInfo(openFileDialog.FileName);
+            LoadSet(CurrentFile.FullName);
+            RefreshData(LoadQuestions(),LoadTestObject());
         }
 
         #endregion
@@ -155,10 +201,16 @@ namespace programowanie_TestApp
             get { return currentFile; }
             set
             {
-                if (value == null) return;
                 currentFile = value;
-                buttonSaveAll.Text = "Zapisz " + currentFile.Name;
-             //   buttonSave.Refresh();
+                if (currentFile == null)
+                {
+                    buttonSaveAll.Text = "Zapisz ";
+                }
+                else
+                {  
+                    buttonSaveAll.Text = "Zapisz " + currentFile.Name;
+                }
+                
             }
         }
 
@@ -284,52 +336,6 @@ namespace programowanie_TestApp
         }
         #endregion
 
-        private void buttonLoadEmpty_Click(object sender, EventArgs e)
-        {
-            if (!ShowConfirmation("Czy na pewno chcesz załadować nowy, pusty test?\nWszystkie niezapisane postępy zostaną utracone!")) return;
-            LoadEmptySet(true);
-            RefreshData(LoadQuestions());
-
-        }
-
-        private void buttonSaveAll_Click(object sender, EventArgs e)
-        {
-            if (CurrentFile == null)
-                buttonSaveAs.PerformClick();
-            if (CurrentFile == null) return;
-
-            SaveSet(CurrentFile.FullName);
-
-
-
-        }
-
-        private void buttonSaveAs_Click(object sender, EventArgs e)
-        {
-            saveFileDialog.ShowDialog();
-            if (saveFileDialog.FileName==null || saveFileDialog.FileName == "") return;
-            CurrentFile = new FileInfo(saveFileDialog.FileName);
-            buttonSaveAll.PerformClick();
-        }
-
-        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-            if (!saveFileDialog.FileName.EndsWith(".xml"))
-            {
-                ShowError("Wskazany plik MUSI mieć rozszerzenie '.xml'!\nSpróbuj jeszcze raz...");
-                 e.Cancel = true;
-                return; 
-            }
-        }
-
-        private void buttonOpen_Click(object sender, EventArgs e)
-        {
-            openFileDialog.ShowDialog();
-            if (openFileDialog.FileName == null || openFileDialog.FileName == "") return;
-            CurrentFile = new FileInfo(openFileDialog.FileName);
-            LoadSet(CurrentFile.FullName);
-            RefreshData(LoadQuestions());
-
-        }
+        
     }
 }

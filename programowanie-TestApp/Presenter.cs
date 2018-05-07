@@ -23,6 +23,12 @@ namespace programowanie_TestApp
             view.LoadEmptySet += View_LoadEmptySet;
             view.SaveSet += View_SaveSet;
             view.LoadSet += View_LoadSet;
+            view.LoadTestObject += View_LoadTestObject;
+        }
+
+        private Test View_LoadTestObject()
+        {
+            return model.theTest;
         }
 
         private void View_LoadSet(string path)
@@ -31,8 +37,9 @@ namespace programowanie_TestApp
 
         }
 
-        private void View_SaveSet(string path)
+        private void View_SaveSet(string path, string testName)
         {
+            model.theTest.Name = testName;
             if (!model.SaveToXML(path)) view.ShowError("Nie udało się zapisać pliku.\nCzy na pewno masz uprawnienia do zapisu w tym miejscu?\n"+path);
         }
 

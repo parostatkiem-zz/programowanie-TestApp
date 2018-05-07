@@ -70,6 +70,7 @@ namespace programowanie_TestApp
 
         public void LoadEmptySet()
         {
+            theTest.Name = "";
             Questions.Clear();
         }
 
@@ -82,7 +83,7 @@ namespace programowanie_TestApp
                 writer.WriteStartDocument();
                 writer.WriteStartElement("test");
 
-                writer.WriteElementString("title", "tytuł"); //CHANGE ME
+                writer.WriteElementString("title", theTest.Name); 
 
                     writer.WriteStartElement("questions");
                         foreach (Question q in Questions)
@@ -115,7 +116,7 @@ namespace programowanie_TestApp
             {
 
                 var doc = XDocument.Load(path);
-                string title=doc.Element("test").Element("title").Value;
+                theTest.Name=doc.Element("test").Element("title").Value;
               
                 var questions = from q in doc.Element("test").Descendants("question")
                                 select new
@@ -128,20 +129,17 @@ namespace programowanie_TestApp
                                                   right = a.Attribute("right"),
                                                   text= a.Element("text").Value
                                               },
-                                    multiChoice = q.Attribute("multiChoice")
-                                    
+                                    multiChoice = q.Attribute("multiChoice") 
                              };
+
                 Questions.Clear();
                 Question tmpQ;
                 Answer tmpA;
                 foreach (var q in questions)
                 {
-                    // use e.code & e.msg
                     tmpQ = new Question(false);
                     tmpQ.IsMultipleChoice = (bool)q.multiChoice;
                     tmpQ.Text = q.text;  
-                    
-
                     foreach(var a in q.answers)
                     {
                         tmpA = new Answer();
@@ -151,8 +149,7 @@ namespace programowanie_TestApp
 
                     }
                     Questions.Add(tmpQ);        
-                }
-                
+                }  
             }
             catch { return false; }
             return true;

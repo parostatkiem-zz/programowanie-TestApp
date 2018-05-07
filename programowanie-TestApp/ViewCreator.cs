@@ -26,7 +26,7 @@ namespace programowanie_TestApp
         public event Action<bool> AddQuestion;
         public event Action<Question> RemoveQuestion;
         public event Action<bool> LoadEmptySet;
-
+        public event Action<string> LoadSet;
         public event Action<string> SaveSet;
         public void RefreshData(List<Question> questions, int selectedIndex = 0)
         {
@@ -309,6 +309,7 @@ namespace programowanie_TestApp
             saveFileDialog.ShowDialog();
             if (saveFileDialog.FileName==null || saveFileDialog.FileName == "") return;
             CurrentFile = new FileInfo(saveFileDialog.FileName);
+            buttonSaveAll.PerformClick();
         }
 
         private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
@@ -319,6 +320,16 @@ namespace programowanie_TestApp
                  e.Cancel = true;
                 return; 
             }
+        }
+
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            openFileDialog.ShowDialog();
+            if (openFileDialog.FileName == null || openFileDialog.FileName == "") return;
+            CurrentFile = new FileInfo(openFileDialog.FileName);
+            LoadSet(CurrentFile.FullName);
+            RefreshData(LoadQuestions());
+
         }
     }
 }

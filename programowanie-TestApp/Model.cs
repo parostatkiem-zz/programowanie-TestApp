@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace programowanie_TestApp
 {
@@ -11,6 +12,7 @@ namespace programowanie_TestApp
     {
         
         public List<Question> Questions = new List<Question>();
+        public Test theTest = new Test();
 
         public Model()
         {
@@ -103,6 +105,54 @@ namespace programowanie_TestApp
                 writer.WriteEndElement(); //test
                 writer.WriteEndDocument();
                 }
+            }
+            catch { return false; }
+            return true;
+        }
+        public bool LoadFromXML(string path)
+        {
+            try
+            {
+
+                var doc = XDocument.Load(path);
+                string title=doc.Element("test").Element("title").Value;
+              
+                var questions = from q in doc.Element("test").Descendants("question")
+                                select new
+                                {
+                                    text = q.Element("text").Value,
+                                    
+                                    answers = from a in q.Descendants("answer")
+                                              select new
+                                              {
+                                                  right = a.Attribute("right"),
+                                                  text= a.Element("text").Value
+                                              },
+                                    multiChoice = q.Attribute("multiChoice")
+                                    
+                             };
+                Questions.Clear();
+                Question tmpQ;
+                Answer tmpA;
+                foreach (var q in questions)
+                {
+                    // use e.code & e.msg
+                    tmpQ = new Question(false);
+                    tmpQ.IsMultipleChoice = (bool)q.multiChoice;
+                    tmpQ.Text = q.text;  
+                    
+
+                    foreach(var a in q.answers)
+                    {
+                        tmpA = new Answer();
+                        tmpA.IsRight = (bool)a.right;
+                        tmpA.Text = a.text;
+                        tmpQ.Answers.Add(tmpA);
+
+                    }
+                    Questions.Add(tmpQ);        
+                }
+                
             }
             catch { return false; }
             return true;

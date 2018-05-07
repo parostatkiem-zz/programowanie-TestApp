@@ -82,4 +82,9 @@ namespace programowanie_TestApp
         }
 
     }
+
+    public class Test
+    {
+        public string Name { get; set; }
+    }
 }

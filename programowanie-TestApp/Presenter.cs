@@ -22,6 +22,13 @@ namespace programowanie_TestApp
             view.RemoveQuestion += View_RemoveQuestion;
             view.LoadEmptySet += View_LoadEmptySet;
             view.SaveSet += View_SaveSet;
+            view.LoadSet += View_LoadSet;
+        }
+
+        private void View_LoadSet(string path)
+        {
+            if (!model.LoadFromXML(path)) view.ShowError("Nie udało się odczytać pliku.\nCzy na pewno masz uprawnienia do jego odczytu?\n");
+
         }
 
         private void View_SaveSet(string path)
@@ -55,9 +62,9 @@ namespace programowanie_TestApp
             if (!model.UpdateSingleQuestion(index, target)) view.ShowError("Wystąpił problem przy zmianie pytania" );
         }
 
-        private Question View_LoadSingleQuestion(int arg)
+        private Question View_LoadSingleQuestion(int index)
         {
-            return model.Questions[arg];
+            return model.Questions[index];
         }
 
         private List<Question> View_LoadQuestions()

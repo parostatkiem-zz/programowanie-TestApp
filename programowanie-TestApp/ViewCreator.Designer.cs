@@ -101,7 +101,7 @@
             this.textBoxTestName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxTestName.Location = new System.Drawing.Point(49, 438);
             this.textBoxTestName.Name = "textBoxTestName";
-            this.textBoxTestName.Size = new System.Drawing.Size(257, 20);
+            this.textBoxTestName.Size = new System.Drawing.Size(238, 20);
             this.textBoxTestName.TabIndex = 13;
             // 
             // labelCopyright
@@ -170,7 +170,7 @@
             this.listBoxQuestions.Items.AddRange(new object[] {
             "Pytanie 1",
             "Pytanie 2"});
-            this.listBoxQuestions.Location = new System.Drawing.Point(3, 27);
+            this.listBoxQuestions.Location = new System.Drawing.Point(3, 25);
             this.listBoxQuestions.Name = "listBoxQuestions";
             this.listBoxQuestions.Size = new System.Drawing.Size(305, 404);
             this.listBoxQuestions.TabIndex = 7;
@@ -227,7 +227,7 @@
             this.groupBoxSettings.Controls.Add(this.buttonSave);
             this.groupBoxSettings.Controls.Add(this.checkBoxMultiChoice);
             this.groupBoxSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBoxSettings.Location = new System.Drawing.Point(495, 5);
+            this.groupBoxSettings.Location = new System.Drawing.Point(497, 4);
             this.groupBoxSettings.Name = "groupBoxSettings";
             this.groupBoxSettings.Size = new System.Drawing.Size(182, 122);
             this.groupBoxSettings.TabIndex = 5;
@@ -297,7 +297,7 @@
             this.textBoxQuestionText.AcceptsReturn = true;
             this.textBoxQuestionText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxQuestionText.Location = new System.Drawing.Point(2, 24);
+            this.textBoxQuestionText.Location = new System.Drawing.Point(2, 25);
             this.textBoxQuestionText.Multiline = true;
             this.textBoxQuestionText.Name = "textBoxQuestionText";
             this.textBoxQuestionText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;

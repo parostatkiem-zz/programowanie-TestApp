@@ -24,6 +24,12 @@ namespace programowanie_TestApp
             view.SaveSet += View_SaveSet;
             view.LoadSet += View_LoadSet;
             view.LoadTestObject += View_LoadTestObject;
+            view.ValidateAllQuestions += View_ValidateAllQuestions;
+        }
+
+        private bool View_ValidateAllQuestions()
+        {
+            return model.ValidateAllQuestions();
         }
 
         private Test View_LoadTestObject()

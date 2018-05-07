@@ -19,6 +19,7 @@ namespace programowanie_TestApp
         event Action<string> LoadSet;
         event Func<Test> LoadTestObject;
         event Action<string, string> SaveSet;
+        event Func<bool> ValidateAllQuestions;
 
         void ShowError(string message);
         void ShowError(string title, string message);

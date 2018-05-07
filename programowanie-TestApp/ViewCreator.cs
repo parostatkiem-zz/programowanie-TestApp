@@ -29,6 +29,8 @@ namespace programowanie_TestApp
         public event Action<string> LoadSet;
         public event Func<Test> LoadTestObject;
         public event Action<string,string> SaveSet;
+        public event Func<bool> ValidateAllQuestions;
+
         public void RefreshData(List<Question> questions, Test testObj, int selectedIndex = 0)
         {
             textBoxTestName.Text = testObj.Name;
@@ -95,16 +97,11 @@ namespace programowanie_TestApp
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
             Question currentQuestion = GetCurrentQuestion();
             if (currentQuestion == null) return;
 
-
-
             currentQuestion.IsMultipleChoice = checkBoxMultiChoice.Checked;
             currentQuestion.Text = textBoxQuestionText.Text;
-
-            //dodać zapisywanie odpowiedzi
 
             currentQuestion.Answers.Clear();
             foreach (SingleAnswerControl s in panelAnswerContainer.Controls)
@@ -119,10 +116,6 @@ namespace programowanie_TestApp
                 return;
             }
             RefreshData(LoadQuestions(), LoadTestObject(), CurrentlySelectedQuestionIndex);
-
-
-
-
             // DisplayQuestion(LoadSingleQuestion(CurrentlySelectedQuestionIndex));
         }
 
@@ -158,10 +151,23 @@ namespace programowanie_TestApp
 
         private void buttonSaveAll_Click(object sender, EventArgs e)
         {
+            if (textBoxTestName.Text.Length <= 0)
+            {
+                mainErrorProvider.BlinkStyle = ErrorBlinkStyle.AlwaysBlink;
+                mainErrorProvider.SetError(textBoxTestName, "Nazwa nie może być pusta");
+            }
+
+            if (!ValidateAllQuestions())
+            {
+                ShowError("Ups! Chyba nie wszystkie dane są poprawne..\nPoszukaj czerwonego wykrzyknika w każdym z pytań.\nCzy na pewno istnieje choć jedno pytanie?");
+                return;
+            }
+
             if (CurrentFile == null)
                 buttonSaveAs.PerformClick();
             if (CurrentFile == null) return;
 
+           
             SaveSet(CurrentFile.FullName,textBoxTestName.Text);
         }
 
@@ -332,6 +338,20 @@ namespace programowanie_TestApp
                 if (!a.ValidateControl()) isValid = false;
                 
             }
+            return isValid;
+        }
+
+        private bool ValidateWholeTest()
+        {
+           
+            bool isValid = true;
+            if (textBoxTestName.Text.Length <= 0)
+            {
+               // mainErrorProvider.SetError(textBoxTestName,"Nazwa nie może być pusta");
+                isValid = false;
+            }
+
+            isValid = ValidateAllQuestions();
             return isValid;
         }
         #endregion

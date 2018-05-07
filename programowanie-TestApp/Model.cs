@@ -154,5 +154,36 @@ namespace programowanie_TestApp
             catch { return false; }
             return true;
         }
+
+        public bool ValidateAllQuestions()
+        {
+            bool isValid = true;
+            if (Questions.Count <= 0) return false;
+            foreach (Question theQuestion in Questions)
+            { 
+
+                int rightAnswers = 0;
+                foreach (Answer answ in theQuestion.Answers)
+                {
+                    if (answ.IsRight) rightAnswers++;
+                    if (answ.Text.Length <= 0) isValid = false;
+                }
+
+                if (rightAnswers == 0)
+                {
+                    isValid = false;
+                }
+                if (!theQuestion.IsMultipleChoice && rightAnswers > 1)
+                {
+                    isValid = false;
+                }
+
+                if (theQuestion.Text.Length<=0 && theQuestion.Text==Question.DefaultText)
+                {
+                    isValid = false;
+                }
+            }
+            return isValid;
+        }
     }
 }
